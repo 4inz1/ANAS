@@ -1,5 +1,17 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel } = require('@discordjs/voice');
+const http = require('http');
+
+// سيرفر ويب بسيط عشان Render ما يقفل البوت
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is alive!\n');
+});
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`HTTP server is listening on port ${PORT}`);
+});
 
 const client = new Client({
     intents: [
@@ -10,7 +22,7 @@ const client = new Client({
 });
 
 client.once('ready', () => {
-    console.log(`تم تسجيل الدخول بنجاح! البوت شغال باسم: ${client.user.tag}`);
+    console.log(`تم تسجيل الدخول بنجاح! البوت شغال باسم ${client.user.tag}`);
 
     const channelId = '1564996936191320195'; // أيدي الروم الصوتي
     const guildId = '1564845550497693767'; // أيدي السيرفر
@@ -25,23 +37,21 @@ client.once('ready', () => {
                 adapterCreator: guild.voiceAdapterCreator,
                 selfDeaf: false,
             });
-            console.log(`تم دخول البوت للروم الصوتي بنجاح!`);
+            console.log('تم دخول البوت للروم الصوتي بنجاح');
         } else {
-            console.log('لم يتم العثور على الروم الصوتي، تأكد من الأيدي!');
+            console.log('لم يتم العثور على الروم الصوتي، تأكد من الأيدي');
         }
     }
 });
 
-// ميزة إعطاء الرتبة للأعضاء الجدد تلقائياً
 client.on('guildMemberAdd', async member => {
     const roleId = '1564986433968799835';
-    
     try {
         await member.roles.add(roleId);
-        console.log(`تم إعطاء الرتبة بنجاح إلى العضو: ${member.user.tag}`);
+        console.log(`تم إعطاء الرتبة للأعضاء الجدد تلقائياً`);
     } catch (error) {
-        console.error('حدث خطأ أثناء إعطاء الرتبة:', error);
+        console.error('خطأ في إعطاء الرتبة:', error);
     }
 });
 
-client.login('MTU2NTAxMjg1NjI5Mjc2OTg1NA.GGlZx5.wcXRLt93b0-Q9uM15EHLla0kGjxjXVNDWdw1Gc');
+client.login(process.env.DISCORD_TOKEN);
