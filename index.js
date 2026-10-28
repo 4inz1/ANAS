@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const http = require('http');
 
-// سيرفر ويب عشان Render يظل شغال 24 ساعة وما يفصل
+// سيرفر ويب بسيط عشان Render يظل شغال 24 ساعة وما يفصل
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Anas Bot is running!\n');
@@ -55,5 +55,5 @@ client.on('guildMemberAdd', async member => {
     }
 });
 
-// تسجيل دخول البوت باستخدام التوكن الخاص بك
-client.login('MTU2NTAxMjg1NjI5Mjc2OTg1NA.GPzON7.ovvz0Jve9OitOxwLPQyQzqO6WICqfOlTTXT9bc');
+// تسجيل دخول البوت باستخدام متغير البيئة في Render
+client.login(process.env.DISCORD_TOKEN);
