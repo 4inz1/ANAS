@@ -1,10 +1,10 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const http = http = require('http');
+const http = require('http');
 
-// سيرفر ويب بسيط عشان Render يظل شغال 24 ساعة وما يفصل
+// سيرفر ويب بسيط عشان البوت يظل شغال
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Anas Role Bot is running!\n');
+  res.end('Bot is running!\n');
 });
 
 const PORT = process.env.PORT || 3000;
@@ -26,6 +26,10 @@ client.once('ready', () => {
 // إعطاء الرتبة تلقائياً عند دخول أي عضو جديد للسيرفر
 client.on('guildMemberAdd', async member => {
     const roleId = '1564986433968799835'; // أيدي رتبة الأعضاء الجدد
+    const guildId = '1564845550497693767'; // أيدي السيرفر
+
+    if (member.guild.id !== guildId) return;
+
     try {
         await member.roles.add(roleId);
         console.log(`تم إعطاء الرتبة للعضو الجديد بنجاح`);
@@ -34,5 +38,5 @@ client.on('guildMemberAdd', async member => {
     }
 });
 
-// تسجيل دخول البوت
-client.login('MTU2NTAxMjg1NjI5Mjc2OTg1NA.GX683g.CQtsPnCemqXitixPLYw-5_c2kk54u9mUHA73Ok');
+// تسجيل دخول البوت بالتوكن الجديد
+client.login('MTU2NTAxMjg1NjI5Mjc2OTg1NA.Gh3LJt.MSGBSlJFdrP6ODXvMRgBkj1d931BNvp-cnShoo');
