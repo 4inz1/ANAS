@@ -2,7 +2,7 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const http = require('http');
 
-// سيرفر ويب عشان Render يظل شغال وما يفصل
+// سيرفر ويب عشان Render يظل شغال 24 ساعة وما يفصل
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Anas Bot is running!\n');
@@ -44,8 +44,9 @@ client.once('ready', () => {
     }
 });
 
+// إعطاء الرتبة تلقائياً عند دخول أي عضو جديد للسيرفر
 client.on('guildMemberAdd', async member => {
-    const roleId = '1564986433968799835';
+    const roleId = '1564986433968799835'; // أيدي رتبة الأعضاء الجدد
     try {
         await member.roles.add(roleId);
         console.log(`تم إعطاء الرتبة للأعضاء الجدد تلقائياً`);
@@ -54,5 +55,5 @@ client.on('guildMemberAdd', async member => {
     }
 });
 
-// ضع توكن البوت الخاص بك هنا مباشرة بين العلامتين
-client.login('حط_توكن_البوت_حقك_هنا');
+// تسجيل دخول البوت باستخدام التوكن الخاص بك
+client.login('MTU2NTAxMjg1NjI5Mjc2OTg1NA.GPzON7.ovvz0Jve9OitOxwLPQyQzqO6WICqfOlTTXT9bc');
