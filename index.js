@@ -2,10 +2,10 @@ const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const http = require('http');
 
-// سيرفر ويب بسيط عشان Render ما يقفل البوت
+// سيرفر ويب عشان Render يظل شغال وما يفصل
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Bot is alive!\n');
+  res.end('Anas Bot is running!\n');
 });
 
 const PORT = process.env.PORT || 3000;
@@ -54,4 +54,5 @@ client.on('guildMemberAdd', async member => {
     }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+// ضع توكن البوت الخاص بك هنا مباشرة بين العلامتين
+client.login('حط_توكن_البوت_حقك_هنا');
