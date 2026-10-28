@@ -55,5 +55,5 @@ client.on('guildMemberAdd', async member => {
     }
 });
 
-// تسجيل دخول البوت باستخدام متغير البيئة في Render
-client.login(process.env.DISCORD_TOKEN);
+// تسجيل دخول البوت مباشرة بالتوكن الصحيح
+client.login('MTU2NTAxMjg1NjI5Mjc2OTg1NA.GX683g.CQtsPnCemqXitixPLYw-5_c2kk54u9mUHA73Ok');
